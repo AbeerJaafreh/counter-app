@@ -1,10 +1,25 @@
 import React, { Component } from 'react';
+import './counter.css';
+
 class Counter extends Component {
-    state={
-        count:0,
-        tags:[]
-        // imageUrl:"https://picsum.photos/150"
+    componentDidUpdate(prevProps,prevState){
+        console.log("prevProps",prevProps);
+        console.log("prevState",prevState);
+        if(prevProps.counter.value !== this.props.counter.value){
+            //Ajax call and get new data from the server
+
+        }
+
     }
+
+    componentWillUnmount(){
+        console.log("Counter - Unmount");
+    }
+    // state={
+    //     value:this.props.counter.value
+    //     //tags:[]
+    //     // imageUrl:"https://picsum.photos/150"
+    // };
     // renderTags(){
     //     if(this.state.tags.length===0)return <p> There are no tags!</p>
     //     return(
@@ -18,39 +33,46 @@ class Counter extends Component {
     //     this.handleIncrement=this.handleIncrement.bind(this);
 
     // }
-    handleIncrement=()=>
-    {
-        // console.log("Increment Clicked",this)
-        this.setState({count:this.state.count +1 })
-    }
+    // handleIncrement=()=>{
 
+    //     // console.log("Increment Clicked",this)
+    //     // console.log(product)
+    //     this.setState({value:this.state.value +1 });
+    // };
+    
+
+    // doHandleIncrement=()=>{
+    //     this.handleIncrement({id:1});
+    // };
   
 
     render() {
         // let classes = this.getBadgeClasses();
+        console.log('Counter - Rendered');
 
         return (
         <div>
-            <img src={this.state.imageUrl} alt=''/> 
-            <span className={this.getBadgeClasses()}>{this.formatCount()} </span>
-            <button onClick={this.handleIncrement} className={"btn btn-secondary btn-sm m-1"}>+</button>
-            <button className="btn btn-secondary btn-sm m-1">-</button>
+            {/* {this.props.children} */}
+            {/* <img src={this.state.imageUrl} alt=''/>  */}
+            <span className={this.getBadgeClasses(this.props.counter)}>{this.formatCount()} </span>
+            <button onClick={()=>this.props.onIncrement} className={"btn btn-secondary btn-sm "}>Increment</button>
+            <button onClick={()=>this.props.onDelete(this.props.counter.id)} className="btn btn-danger m-1"> Delete</button>
        
-       { /* {this.state.tags.length===0 && 'please create a new tag'}
+        { /* {this.state.tags.length===0 && 'please create a new tag'}
         {this.renderTags()} */}
         </div>
         );
     }
     getBadgeClasses() {
         let classes = "badge m-2 badge-";
-        classes += this.state.count === 0 ? "warning" : "primary";
+        classes += this.props.counter.value === 0 ? "warning" : "primary";
         return classes;
     }
 
     formatCount()
     {
-        const {count}=this.state;
-        return count===0 ?'zero':count;
+        const {value}=this.props.counter;
+        return value===0 ?'zero':value;
          
     }
 }
