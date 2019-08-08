@@ -13,20 +13,20 @@ class App extends Component {
         {id:4 , value:0}
     ]
  };
- constructor(props){
-   super(props);
-   console.log('App - Constructor');
-  //  this.state=this.props.something;
- };
+//  constructor(props){
+//    super(props);
+//    console.log('App - Constructor');
+//   //  this.state=this.props.something;
+//  };
 //  ComponentDidMount(){
 //   console.log('App - Mounted');
 //  }
  handleIncrement=counter=>{
-    const counters=[...this.state.counters];
-    const index=counters.indexOf(counter);
-    counters[index]={...counter }
-    counters[index].value++;
-    this.setState({counters});
+  const counters = [...this.state.counters];
+  const index = counters.indexOf(counter);
+  counters[index] = {...counter};
+  counters[index].value++;
+  this.setState({ counters });
     };
  handleReset=()=>{
      const counters=this.state.counters.map(c => {

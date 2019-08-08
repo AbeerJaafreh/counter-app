@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
-import './counter.css';
 
 class Counter extends Component {
-    componentDidUpdate(prevProps,prevState){
-        console.log("prevProps",prevProps);
-        console.log("prevState",prevState);
-        if(prevProps.counter.value !== this.props.counter.value){
-            //Ajax call and get new data from the server
+    // componentDidUpdate(prevProps,prevState){
+    //     console.log("prevProps",prevProps);
+    //     console.log("prevState",prevState);
+    //     if(prevProps.counter.value !== this.props.counter.value){
+    //         //Ajax call and get new data from the server
 
-        }
+    //     }
 
-    }
+    // }
 
-    componentWillUnmount(){
-        console.log("Counter - Unmount");
-    }
+    // componentWillUnmount(){
+    //     console.log("Counter - Unmount");
+    // }
     // state={
     //     value:this.props.counter.value
     //     //tags:[]
@@ -54,8 +53,8 @@ class Counter extends Component {
         <div>
             {/* {this.props.children} */}
             {/* <img src={this.state.imageUrl} alt=''/>  */}
-            <span className={this.getBadgeClasses(this.props.counter)}>{this.formatCount()} </span>
-            <button onClick={()=>this.props.onIncrement} className={"btn btn-secondary btn-sm "}>Increment</button>
+            <span className={this.getBadgeClasses()}>{this.formatCount()} </span>
+            <button onClick={()=>this.props.onIncrement(this.props.counter)} className={"btn btn-secondary btn-sm "}>Increment</button>
             <button onClick={()=>this.props.onDelete(this.props.counter.id)} className="btn btn-danger m-1"> Delete</button>
        
         { /* {this.state.tags.length===0 && 'please create a new tag'}
